@@ -21,15 +21,15 @@ logsource:
     category: process_creation
     product: windows
 detection:
-    selection_flags: 
+    selection_flags:
         CommandLine|contains|windash:
-            - ' -ma ' 
-            - ' -mm ' 
-            - ' -mp ' 
+            - ' -ma '
+            - ' -mm ' # Mini dump
+            - ' -mp ' # Miniplus dump
     selection_process:
-        CommandLine|contains: 
+        CommandLine|contains:
             - ' ls' # Short for lsass
-            - ' keyiso' 
+            - ' keyiso'
             - ' samss'
     condition: 1 of selection_process and 1 of selection_flags
 falsepositives:
