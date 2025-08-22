@@ -31,7 +31,7 @@ detection:
             - ' ls' # Short for lsass
             - ' keyiso'
             - ' samss'
-    condition: all of selection*
+    condition: all of selection_*
 falsepositives:
     - Unlikely, because no one should dump an lsass process memory
     - Another tool that uses command line flags similar to ProcDump
