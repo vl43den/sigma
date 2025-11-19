@@ -1,0 +1,158 @@
+name: Real wrld Sigma Validation
+on: [push, pull_request]
+
+jobs:
+  test-live-detection:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Sigma CLI
+        run: pip install sigma-cli pyyaml
+
+      # 1. ENABLE AUDITING
+      - name: Enable Process Creation Logging
+        run: |
+          auditpol /set /subcategory:"Process Creation" /success:enable /failure:enable
+          # Enable Command Line Logging (Registry Hack)
+          reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit" /v ProcessCreationIncludeCmdLine_Enabled /t REG_DWORD /d 1 /f
+
+      # 2. DETONATE (Generate the True Positive)
+      # We run the exact command your rule targets.
+      # We use 'start /b' to hide it, and launch PowerShell (Risky Target).
+      - name: Execute Suspicious Command (True Positive)
+        run: |
+          Write-Host "Launching hidden process..."
+          cmd.exe /c "start /b powershell.exe -WindowStyle Hidden -Command Write-Host 'Malware Simulation'"
+          Start-Sleep -Seconds 2 # Give the OS time to log it
+
+      # 3. DETONATE (Generate the False Positive)
+      # We run a command that is 'hidden' (start /b) but NOT risky (notepad).
+      - name: Execute Benign Command (False Positive)
+        run: |
+          Write-Host "Launching benign hidden process..."
+          cmd.exe /c "start /b notepad.exe"
+          Start-Sleep -Seconds 2
+          Stop-Process -Name notepad -Force -ErrorAction SilentlyContinue
+
+      # 4. HARVEST REAL LOGS
+      #  posh to find the events made
+      - name: Extract Real Logs from Event Viewer
+        shell: powershell
+        run: |
+          # Get the last 20 Process Creation events
+          $Events = Get-WinEvent -LogName Security -MaxEvents 20 | Where-Object {$_.Id -eq 4688}
+          
+          $LogData = @()
+
+          foreach ($E in $Events) {
+              # Convert Event XML to a readable object
+              $Xml = [xml]$E.ToXml()
+              $CmdLine = $Xml.Event.EventData.Data | Where-Object {$_.Name -eq "CommandLine"} | Select-Object -ExpandProperty "#text"
+              $Image   = $Xml.Event.EventData.Data | Where-Object {$_.Name -eq "NewProcessName"} | Select-Object -ExpandProperty "#text"
+              $Parent  = $Xml.Event.EventData.Data | Where-Object {$_.Name -eq "ParentProcessName"} | Select-Object -ExpandProperty "#text"
+              $Original = "Cmd.Exe" # Hardcoded for simplification as 4688 doesn't always pop OriginalFileName easily in XML without extra parsing
+
+              # Create a simplified JSON object that matches Sigma expectations
+              $LogObj = @{
+                  EventID = 4688
+                  Image = $Image
+                  OriginalFileName = $Original
+                  CommandLine = $CmdLine
+                  ParentImage = $Parent
+              }
+              $LogData += $LogObj
+          }
+
+          # Save to JSON file for our Python script to read
+          $LogData | ConvertTo-Json -Depth 3 | Out-File "real_logs.json" -Encoding UTF8
+          
+          Write-Host "[-] Captured $( $LogData.Count ) events from the Windows Security Log."
+          Get-Content real_logs.json
+
+      # 5. CREATE RULE FILE (Same as before)
+      - name: Create Rule File
+        run: |
+          New-Item -Path "rules" -ItemType Directory -Force
+          @'
+          title: Hidden Command Launching Suspicious Targets
+          id: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d
+          status: stable
+          logsource:
+            category: process_creation
+            product: windows
+          detection:
+            selection_process:
+              - Image|endswith: '\cmd.exe'
+              - OriginalFileName: 'Cmd.Exe'
+            selection_hidden:
+              CommandLine|contains:
+                - 'start /b'
+                - 'start /min'
+            selection_risky_target:
+              CommandLine|contains:
+                - 'powershell'
+                - 'pwsh'
+                - '.vbs'
+                - '.bat'
+            condition: selection_process and selection_hidden and selection_risky_target
+          '@ | Out-File "rules/test_rule.yml" -Encoding UTF8
+
+      # 6. VALIDATE
+      - name: Validate Against Real Logs
+        shell: python
+        run: |
+          import yaml, json, sys
+
+          print("[*] Loading Real Logs...")
+          with open('real_logs.json', 'r', encoding='utf-8-sig') as f:
+              logs = json.load(f)
+
+          print("[*] Loading Rule...")
+          with open('rules/test_rule.yml', 'r', encoding='utf-8-sig') as f:
+              rule = yaml.safe_load(f)
+
+          tp_found = False
+          fp_found = False
+
+          # Logic Checker
+          def check_event(log):
+              cmd = log.get('CommandLine', '') or ''
+              # Check Hidden
+              if 'start /b' not in cmd and 'start /min' not in cmd: return False
+              # Check Risky
+              risky = ['powershell', 'pwsh', '.vbs', '.bat']
+              if not any(r in cmd for r in risky): return False
+              return True
+
+          print("-" * 40)
+          for log in logs:
+              cmd = log.get('CommandLine', '')
+              if not cmd: continue
+              
+              is_match = check_event(log)
+              
+              if 'powershell' in cmd and 'start /b' in cmd:
+                  print(f"[TP CANDIDATE] {cmd}")
+                  if is_match: 
+                      print("DETECTED (SUCCESS)")
+                      tp_found = True
+                  else:
+                      print("NOT DETECTED (FAIL)")
+
+              elif 'notepad' in cmd and 'start /b' in cmd:
+                  print(f"[FP CANDIDATE] {cmd}")
+                  if not is_match:
+                      print("   >>> IGNORED (SUCCESS)")
+                      fp_found = True
+                  else:
+                      print("   >>> FALSE POSITIVE DETECTED (FAIL)")
+          print("-" * 40)
+
+          if tp_found and fp_found:
+              print("SUCCESS: Rule validated against REAL Windows Event Logs.")
+              sys.exit(0)
+          else:
+              print("FAILURE: Could not find both TP and FP in the logs.")
+              sys.exit(1)
