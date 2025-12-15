@@ -126,6 +126,7 @@ https://app.any.run/tasks/8e22486b-5edc-4cef-821c-373e945f296c/
 https://app.any.run/tasks/93fe92fa-8b2b-4d92-8c09-a841aed2e793/
 https://app.any.run/tasks/97f875e8-0e08-4328-815f-055e971ba754/
 https://app.any.run/tasks/993daa5e-112a-4ff6-8b5a-edbcec7c7ba3
+https://app.any.run/tasks/9a8fd563-4c54-4d0a-9ad8-1fe08339cbc3/
 https://app.any.run/tasks/9c0f37bc-867a-4314-b685-e101566766d7/
 https://app.any.run/tasks/a6aa0057-82ec-451f-8f99-55650ca537da/
 https://app.any.run/tasks/abdf586e-df0c-4d39-89a7-06bf24913401/
@@ -211,6 +212,7 @@ https://blog.cyble.com/2023/01/12/rhadamanthys-new-stealer-spreading-through-goo
 https://blog.cyble.com/2023/01/18/aurora-a-stealer-using-shapeshifting-tactics/
 https://blog.didierstevens.com/2015/03/16/quickpost-metasploit-user-agent-strings/
 https://blog.dylan.codes/evading-sysmon-and-windows-event-logging/
+https://blog.eclecticiq.com/china-nexus-nation-state-actors-exploit-sap-netweaver-cve-2025-31324-to-target-critical-infrastructures
 https://blog.eclecticiq.com/sandworm-apt-targets-ukrainian-users-with-trojanized-microsoft-kms-activation-tools-in-cyber-espionage-campaigns
 https://blog.emsisoft.com/en/32373/beware-new-wave-of-malware-spreads-via-iso-file-email-attachments/
 https://blog.f-secure.com/analysis-of-lockergoga-ransomware/
@@ -410,6 +412,7 @@ https://devco.re/blog/2024/08/23/streaming-vulnerabilities-from-windows-kernel-p
 https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/StartupItems.html
 https://developer.broadcom.com/xapis/esxcli-command-reference/7.0.0/namespace/esxcli_network.html
 https://developer.broadcom.com/xapis/esxcli-command-reference/7.0.0/namespace/esxcli_storage.html
+https://developer.broadcom.com/xapis/esxcli-command-reference/7.0.0/namespace/esxcli_system.html
 https://developer.broadcom.com/xapis/esxcli-command-reference/7.0.0/namespace/esxcli_vsan.html
 https://developer.okta.com/docs/reference/api/event-types/
 https://developer.okta.com/docs/reference/api/system-log/
@@ -474,6 +477,8 @@ https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html
 https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport.html#export-instance
 https://docs.djangoproject.com/en/1.11/ref/exceptions/
 https://docs.djangoproject.com/en/1.11/topics/logging/#django-security
+https://docs.fortinet.com/document/fortigate/7.6.4/cli-reference/333889629/config-firewall-policy
+https://docs.fortinet.com/document/fortigate/7.6.4/fortios-log-message-reference/44546/44546-logid-event-config-attr
 https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners#about-self-hosted-runners
 https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts
 https://docs.github.com/en/enterprise-cloud@latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/audit-log-events-for-your-enterprise
@@ -489,6 +494,7 @@ https://docs.github.com/en/organizations/keeping-your-organization-secure/managi
 https://docs.github.com/en/organizations/keeping-your-organization-secure/managing-two-factor-authentication-for-your-organization/requiring-two-factor-authentication-in-your-organization
 https://docs.github.com/en/organizations/managing-oauth-access-to-your-organizations-data/disabling-oauth-app-access-restrictions-for-your-organization
 https://docs.github.com/en/organizations/managing-organization-settings/transferring-organization-ownership
+https://docs.github.com/en/repositories/archiving-a-github-repository/archiving-repositories
 https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository
 https://docs.google.com/presentation/d/1dkrldTTlN3La-OjWtkWJBb4hVk6vfsSMBFBERs6R8zA/edit
 https://docs.google.com/spreadsheets/d/17pSTDNpa0sf6pHeRhusvWG6rThciE8CsXTSlDUAZDyo
@@ -908,6 +914,7 @@ https://github.com/dotnet/runtime/blob/7abe42dc1123722ed385218268bb9fe04556e3d3/
 https://github.com/dotnet/runtime/blob/ee2355c801d892f2894b0f7b14a20e6cc50e0e54/docs/design/coreclr/jit/viewing-jit-dumps.md#setting-configuration-variables
 https://github.com/dotnet/runtime/blob/f62e93416a1799aecc6b0947adad55a0d9870732/src/coreclr/src/inc/clrconfigvalues.h#L35-L38
 https://github.com/dotnet/runtime/search?p=1&q=COMPlus_&unscoped_q=COMPlus_
+https://github.com/DrorDvash/CVE-2022-22954_VMware_PoC
 https://github.com/dsnezhkov/TruffleSnout
 https://github.com/dsnezhkov/TruffleSnout/blob/master/TruffleSnout/Docs/USAGE.md
 https://github.com/EddieIvan01/iox
@@ -1236,6 +1243,7 @@ https://github.com/rapid7/metasploit-framework/blob/d297adcebb5c1df6fe30b12ca79b
 https://github.com/rapid7/metasploit-framework/blob/eb6535009f5fdafa954525687f09294918b5398d/data/post/powershell/NTDSgrab.ps1
 https://github.com/rapid7/metasploit-framework/blob/eb6535009f5fdafa954525687f09294918b5398d/modules/exploits/multi/http/struts_code_exec_exception_delegator.rb
 https://github.com/rapid7/metasploit-framework/blob/eb6535009f5fdafa954525687f09294918b5398d/modules/post/windows/gather/ntds_grabber.rb
+https://github.com/rapid7/metasploit-framework/issues/11337
 https://github.com/rapid7/metasploit-framework/pull/17407
 https://github.com/redcanaryco/atomic-red-team/blob/02c7d02fe1f1feb0fc7944550408ea8224273994/atomics/T1112/T1112.md#atomic-test-63---disable-remote-desktop-anti-alias-setting-through-registry
 https://github.com/redcanaryco/atomic-red-team/blob/02c7d02fe1f1feb0fc7944550408ea8224273994/atomics/T1112/T1112.md#atomic-test-64---disable-remote-desktop-security-settings-through-registry
@@ -1626,6 +1634,7 @@ https://github.com/TesterCC/exp_poc_library/blob/be61622600ec79d8fba2fa5f816a870
 https://github.com/TesterCC/exp_poc_library/blob/master/exp_poc/CVE-2021-26084_Confluence_OGNL_injection/CVE-2021-26084.md
 https://github.com/tevora-threat/SharpView/
 https://github.com/The-DFIR-Report/Sigma-Rules/blob/75260568a7ffe61b2458ca05f6f25914efb44337/win_mofcomp_execution.yml
+https://github.com/The-Viper-One/Invoke-PowerDPAPI/
 https://github.com/TheD1rkMtr/AMSI_patch
 https://github.com/thinkst/opencanary/blob/a0896adfcaf0328cfd5829fe10d2878c7445138e/opencanary/logger.py#L52
 https://github.com/ThreatHuntingProject/ThreatHunting/blob/cb22598bb70651f88e0285abc8d835757d2cb596/hunts/suspicious_process_creation_via_windows_event_logs.md
@@ -1721,10 +1730,12 @@ https://gtfobins.github.io/gtfobins/wget/
 https://guides.lib.umich.edu/c.php?g=282942&p=1885348
 https://h.43z.one/ipconverter/
 https://hackingiscool.pl/cmdhijack-command-argument-confusion-with-path-traversal-in-cmd-exe/
+https://harfanglab.io/insidethelab/uac-0057-pressure-ukraine-poland/
 https://hashcat.net/wiki/doku.php?id=hashcat
 https://hatching.io/blog/powershell-analysis/
 https://hausec.com/2021/07/26/cobalt-strike-and-tradecraft/
 https://help.duo.com/s/article/6327?language=en_US
+https://help.fortinet.com/fsiem/Public_Resource_Access/7_2_1/rules/PH_RULE_AWS_Management_Console_Brute_Force_of_Root_User_Identity.htm
 https://help.okta.com/en-us/Content/Topics/users-groups-profiles/usgp-create-character-restriction.htm
 https://hijacklibs.net/
 https://hijacklibs.net/entries/3rd_party/google/chrome_frame_helper.html
@@ -2002,6 +2013,7 @@ https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/se
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4647
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4649
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4662
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4673
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4698
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4699
 https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4701
@@ -2073,6 +2085,7 @@ https://learn.microsoft.com/en-us/windows-server/administration/windows-commands
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks-delete
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/secedit
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/shutdown
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/systeminfo
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-delete-systemstatebackup
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-start-backup
 https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/wbadmin-start-recovery
@@ -2292,6 +2305,7 @@ https://malware.news/t/the-rhysida-ransomware-activity-analysis-and-ties-to-vice
 https://man.freebsd.org/cgi/man.cgi?pwd_mkdb
 https://man.openbsd.org/ssh_config#LocalCommand
 https://man.openbsd.org/ssh_config#ProxyCommand
+https://man7.org/linux/man-pages/man1/dmesg.1.html
 https://man7.org/linux/man-pages/man1/ncat.1.html
 https://man7.org/linux/man-pages/man1/passwd.1.html
 https://man7.org/linux/man-pages/man7/bpf-helpers.7.html
@@ -2339,6 +2353,7 @@ https://medium.com/falconforce/falconfriday-direct-system-calls-and-cobalt-strik
 https://medium.com/geekculture/text4shell-exploit-walkthrough-ebc02a01f035
 https://medium.com/mitre-engenuity/att-ck-for-containers-now-available-4c2359654bf1
 https://medium.com/palantir/tampering-with-windows-event-tracing-background-offense-and-defense-4be7ac62ac63
+https://medium.com/r3d-buck3t/red-teaming-in-cloud-leverage-azure-frontdoor-cdn-for-c2-redirectors-79dd9ca98178
 https://medium.com/s2wblog/analysis-of-destructive-malware-whispergate-targeting-ukraine-9d5d158f19f3
 https://medium.com/system-weakness/detecting-as-rep-roasting-attacks-b5b3965f9714
 https://medium.com/tenable-techblog/bypassing-authentication-on-arcadyan-routers-with-cve-2021-20090-and-rooting-some-buffalo-ea1dd30980c2
@@ -3380,6 +3395,7 @@ https://web.archive.org/web/20201124182207/https://github.com/yosqueoy/ditsnap
 https://web.archive.org/web/20210126045316/https://darrenmartyn.ie/2021/01/24/visualdoor-sonicwall-ssl-vpn-exploit/
 https://web.archive.org/web/20210511204621/https://github.com/AlsidOfficial/WSUSpendu
 https://web.archive.org/web/20210512154016/https://github.com/AlsidOfficial/WSUSpendu/blob/master/WSUSpendu.ps1
+https://web.archive.org/web/20210629055600/https://github.com/hhlxf/PrintNightmare/
 https://web.archive.org/web/20210701042336/https://github.com/afwu/PrintNightmare
 https://web.archive.org/web/20210901184449/https://www.fireeye.com/blog/threat-research/2021/09/unknown-actor-using-clfs-log-files-for-stealth.html
 https://web.archive.org/web/20220224045756/https://www.ria.ee/sites/default/files/content-editors/kuberturve/tale_of_gamaredon_infection.pdf
@@ -3397,6 +3413,7 @@ https://web.archive.org/web/20221019044836/https://nsudo.m2team.org/en-us/
 https://web.archive.org/web/20221026202428/https://gist.github.com/code-scrap/d7f152ffcdb3e0b02f7f394f5187f008
 https://web.archive.org/web/20230208123920/https://cyberwardog.blogspot.com/2017/03/chronicles-of-threat-hunter-hunting-for_22.html
 https://web.archive.org/web/20230329153811/https://blog.menasec.net/2019/02/threat-huting-10-impacketsecretdump.html
+https://web.archive.org/web/20230329154538/https://blog.menasec.net/2019/07/interesting-difr-traces-of-net-clr.html
 https://web.archive.org/web/20230329155141/https://blog.menasec.net/2019/03/threat-hunting-26-remote-windows.html
 https://web.archive.org/web/20230329170326/https://blog.menasec.net/2019/02/threat-hunting-21-procdump-or-taskmgr.html
 https://web.archive.org/web/20230329171218/https://blog.menasec.net/2019/02/threat-hunting-3-detecting-psexec.html
@@ -3864,6 +3881,7 @@ https://www.publicnow.com/view/EB87DB49C654D9B63995FAD4C9DE3D3CC4F6C3ED?16716348
 https://www.pureid.io/dumping-abusing-windows-credentials-part-1/
 https://www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/yellow-liderc-ships-its-scripts-delivers-imaploader-malware.html
 https://www.pwndefend.com/2021/02/15/retrieving-passwords-from-veeam-backup-servers/
+https://www.pwndefend.com/2022/01/07/log4shell-exploitation-and-hunting-on-vmware-horizon-cve-2021-44228/
 https://www.pwndefend.com/2023/03/15/the-long-game-persistent-hash-theft/
 https://www.py2exe.org/
 https://www.python.org/dev/peps/pep-0249/#exceptions
