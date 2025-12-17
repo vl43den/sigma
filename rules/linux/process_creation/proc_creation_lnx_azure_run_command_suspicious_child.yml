@@ -1,0 +1,43 @@
+title: Suspicious Child Process of Azure Run Command on Linux
+id: 8c452236-7341-5236-a362-236152152514
+related:
+    - id: 5a2e6f43-85f2-4e6a-8d3b-9c2e1f4a5b6c
+      type: similar
+status: experimental
+description: |
+    Detects suspicious commands spawned by shell scripts running under the Azure Run Command
+    extension context on Linux virtual machines.
+author: Vladan Sekulic
+date: 2025-12-17
+references:
+    - https://cloud.google.com/blog/topics/threat-intelligence/azure-run-command-dummies
+logsource:
+    product: linux
+    category: process_creation
+detection:
+    selection_parent:
+        ParentCommandLine|contains|all:
+            - '/bin/sh'
+            - '/var/lib/waagent/run-command/download/'
+            - '/script.sh'
+    selection_child:
+        Image|endswith:
+            - '/whoami'   # recon
+            - '/id'
+            - '/nc'       # reverse shells
+            - '/ncat'
+            - '/netcat'
+            - '/python'   # interactive shells
+            - '/python3'
+            - '/perl'
+            - '/socat'    # port forwarding/shell
+    condition: selection_parent and selection_child
+falsepositives:
+    - Custom admin scripts invoking specific diagnostics
+    - Legitimate python automation scripts pushed via Azure
+level: high
+tags:
+    - attack.execution
+    - attack.t1059.004
+    - attack.discovery
+    - attack.t1033
