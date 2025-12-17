@@ -5,7 +5,7 @@ related:
       type: similar
 status: experimental
 description: |
-    Detects suspicious commands spawned by shell scripts running under the Azure Run Command 
+    Detects suspicious commands spawned by shell scripts running under the Azure Run Command
     extension context on Linux virtual machines.
 author: Vladan Sekulic
 date: 2025-12-17
@@ -20,7 +20,7 @@ detection:
             - '/bin/sh'
             - '/var/lib/waagent/run-command/download/'
             - '/script.sh'
-    
+            
     selection_child:
         Image|endswith:
             - '/whoami'   # recon
@@ -32,7 +32,7 @@ detection:
             - '/python3'
             - '/perl'
             - '/socat'    # port forwarding/shell
-    
+            
     condition: selection_parent and selection_child
 falsepositives:
     - Custom admin scripts invoking specific diagnostics
