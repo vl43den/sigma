@@ -18,8 +18,8 @@ detection:
         operationName:
             - 'Microsoft.Compute/virtualMachines/runCommand/action'
             - 'Microsoft.Compute/virtualMachines/runCommands/write'
-        status: 
-            - 'Started' 
+        status:
+            - 'Started'
             - 'Succeeded'
 
     condition: selection
