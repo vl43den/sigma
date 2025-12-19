@@ -3,13 +3,17 @@ id: 5a2e6f43-85f2-4e6a-8d3b-9c2e1f4a5b6c
 status: experimental
 description: |
     Detects the execution of the 'Run Command' action on an Azure Virtual Machine via the Azure Activity Log.
-    Adversaries with 'Virtual Machine Contributor' rights (and higher) can use this to execute arbitrary code even when NSGs block SSH/RDP.
+    Adversaries with 'Virtual Machine Contributor' rights (and higher) can use this to execute arbitrary code
+    even when NSGs block SSH/RDP. According to Mandiant research, Russian threat actors have abused this
+    feature for lateral movement and credential harvesting in compromised cloud environments.
+    Note: Azure Activity Logs do not capture the actual script contents, making endpoint detection critical.
 author: Vladan Sekulic
 date: 2025-12-17
 references:
     - https://cloud.google.com/blog/topics/threat-intelligence/azure-run-command-dummies
-    - https://cloud.google.com/blog/topics/threat-intelligence/russian-targeting-gov-business?hl=en
-    - https://learn.microsoft.com/azure/virtual-machines/run-command
+    - https://cloud.google.com/blog/topics/threat-intelligence/russian-targeting-gov-business
+    - https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/investigating-suspicious-azure-activity-with-microsoft-sentinel/ba-p/2985699
+    - https://learn.microsoft.com/azure/virtual-machines/run-command-overview
 logsource:
     product: azure
     service: activitylogs
@@ -21,13 +25,15 @@ detection:
         status:
             - 'Started'
             - 'Succeeded'
-
     condition: selection
 falsepositives:
     - Legitimate system administration
     - Automated configuration or patching workflows
     - Azure Automation and Automanage operations
+    - Configuration management tools (Ansible, Puppet, Chef via Azure)
 level: medium
 tags:
     - attack.execution
     - attack.t1059
+    - attack.lateral-movement
+    - attack.t1021

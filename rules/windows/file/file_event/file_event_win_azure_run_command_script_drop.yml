@@ -6,14 +6,16 @@ related:
 status: experimental
 description: |
     Detects creation of PowerShell scripts in the Azure Run Command plugin directory.
-    According to Mandiant research, Azure Activity Logs don't capture script contents by default,
+    According to Mandiant research, Azure Activity Logs do not capture script contents by default,
     making file monitoring critical for detecting malicious commands. Scripts are downloaded to
     a predictable path before execution, allowing detection of the actual malicious code being
     pushed to virtual machines via Azure Run Command.
+    This rule triggers on script creation beyond the initial setup script (script0.ps1).
 author: Vladan Sekulic
 date: 2025-12-17
 references:
     - https://cloud.google.com/blog/topics/threat-intelligence/azure-run-command-dummies
+    - https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/investigating-suspicious-azure-activity-with-microsoft-sentinel/ba-p/2985699
 logsource:
     product: windows
     category: file_event
@@ -23,11 +25,14 @@ detection:
             - '\Packages\Plugins\Microsoft.CPlat.Core.RunCommandWindows\'
             - '\Downloads\script'
         TargetFilename|endswith: '.ps1'
-    condition: selection
+    filter_initial:
+        # First script is commonly created during initial VM setup
+        TargetFilename|endswith: '\script0.ps1'
+    condition: selection and not filter_initial
 falsepositives:
     - Legitimate administrative scripts executed via Azure Run Command
-    - Automated patching and configuration management
-    - Azure Automation runbooks
+    - Repeated automated patching and configuration management
+    - Azure Automation runbooks with multiple script executions
 level: medium
 tags:
     - attack.execution

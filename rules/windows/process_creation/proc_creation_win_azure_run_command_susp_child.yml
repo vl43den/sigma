@@ -1,0 +1,53 @@
+title: Suspicious Child Process Of Azure Run Command Extension
+id: 896b507c-e9e3-4088-a72b-46c7fbc6fb4c
+related:
+    - id: 5a2e6f43-85f2-4e6a-8d3b-9c2e1f4a5b6c
+      type: similar
+status: experimental
+description: |
+    Detects suspicious child processes spawned by RunCommandExtension.exe on Windows.
+    According to Mandiant research, attackers use Azure Run Command to execute reconnaissance,
+    credential harvesting, and code execution commands with SYSTEM privileges.
+    This rule focuses on known malicious patterns observed in real-world attacks.
+author: Vladan Sekulic
+date: 2025-12-17
+references:
+    - https://cloud.google.com/blog/topics/threat-intelligence/azure-run-command-dummies
+    - https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/investigating-suspicious-azure-activity-with-microsoft-sentinel/ba-p/2985699
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_parent:
+        ParentImage|endswith: '\RunCommandExtension.exe'
+    selection_img:
+        Image|endswith:
+            - '\whoami.exe'
+            - '\ipconfig.exe'
+            - '\net.exe'
+            - '\net1.exe'
+            - '\nltest.exe'
+            - '\tasklist.exe'
+            - '\quser.exe'
+            - '\query.exe'
+            - '\ntdsutil.exe'
+            - '\procdump.exe'
+            - '\procdump64.exe'
+    selection_cmdline:
+        CommandLine|contains:
+            - 'downloadstring'
+            - 'Net.WebClient'
+            - 'iex('
+            - 'Invoke-Expression'
+            - '-enc '
+            - '-encodedcommand'
+            - 'FromBase64String'
+    condition: selection_parent and (selection_img or selection_cmdline)
+falsepositives:
+    - Legitimate diagnostic scripts that use these tools
+level: high
+tags:
+    - attack.execution
+    - attack.t1059.001
+    - attack.discovery
+    - attack.t1082
