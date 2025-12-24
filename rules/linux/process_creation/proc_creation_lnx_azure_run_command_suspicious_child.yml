@@ -6,11 +6,13 @@ related:
 status: experimental
 description: |
     Detects suspicious commands spawned by shell scripts running under the Azure Run Command
-    extension context on Linux virtual machines.
+    extension context on Linux virtual machines. The detection uses parent-child relationship
+    to identify potentially malicious reconnaissance, reverse shell, or interactive shell activity.
 author: Vladan Sekulic
 date: 2025-12-17
 references:
     - https://cloud.google.com/blog/topics/threat-intelligence/azure-run-command-dummies
+    - https://cloud.google.com/blog/topics/threat-intelligence/russian-targeting-gov-business
 logsource:
     product: linux
     category: process_creation
@@ -20,19 +22,27 @@ detection:
             - '/bin/sh'
             - '/var/lib/waagent/run-command/download/'
             - '/script.sh'
-            
     selection_child:
         Image|endswith:
-            - '/whoami'   # recon
+            # Reconnaissance
+            - '/whoami'
             - '/id'
-            - '/nc'       # reverse shells
+            - '/hostname'
+            - '/uname'
+            # Reverse shells
+            - '/nc'
             - '/ncat'
             - '/netcat'
-            - '/python'   # interactive shells
+            - '/socat'
+            # Interactive shells / scripting
+            - '/python'
             - '/python3'
             - '/perl'
-            - '/socat'    # port forwarding/shell
-            
+            - '/ruby'
+            - '/bash'
+            # Download tools
+            - '/curl'
+            - '/wget'
     condition: selection_parent and selection_child
 falsepositives:
     - Custom admin scripts invoking specific diagnostics
