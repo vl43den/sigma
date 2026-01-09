@@ -1,6 +1,6 @@
 title: Forest Blizzard APT - Process Creation Activity
 id: 07db928c-8632-488e-ac7d-3db847489175
-status: experimental
+status: test
 description: |
     Detects the execution of specific processes and command line combination.
     These were seen being created by Forest Blizzard as described by MSFT.

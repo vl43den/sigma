@@ -1,6 +1,6 @@
 title: Suspicious Binaries and Scripts in Public Folder
 id: b447f7de-1e53-4cbf-bfb4-f1f6d0b04e4e
-status: experimental
+status: test
 description: Detects the creation of a file with a suspicious extension in the public folder, which could indicate potential malicious activity.
 references:
     - https://intel.thedfirreport.com/events/view/30032 # Private Report
